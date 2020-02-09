@@ -1,0 +1,2040 @@
+/*      Ramayana CSS Template
+https://templatemo.com/tm-529-ramayana  */
+
+/*  =======================
+            COLORS 
+    =======================
+#1e1f25 = sidebar and most of the menus
+#a3180b = main color
+rgba(163, 24, 11, 1) = main color rgba
+#eaebef = fond gris des blocs et des commentaires
+
+*/
+
+/* ===========================
+            FONTS
+============================== */
+@import url(fontawesome.css);
+@import url("https://fonts.googleapis.com/css?family=Roboto+Slab:400,700");
+
+
+/* ###################################################
+######################################################
+
+                        GENERAL
+
+######################################################
+###################################################### */
+
+/* ===========================
+            Basiques
+============================== */
+body {
+    font-family: 'Roboto Slab', sans-serif;
+}
+input, select, textarea {
+	outline: none;
+}
+a:hover {
+	color: #FC3;
+	text-decoration: none;
+}
+h4 {
+	font-size: 19px;
+	font-weight: 700;
+	color: #31323a;
+	letter-spacing: 0.25px;
+}
+h6 {
+    font-size: 15px;
+    color: #8f8f8f;
+}
+p {
+    font-size: 14px;
+    line-height: 25px;
+    color: #7a7a7a;
+    letter-spacing: 0.2px;
+}
+img {
+	width: 100%;
+	overflow: hidden;
+}
+.clear {
+    clear: both;
+}
+
+/* ===========================
+        Boutons / liens
+============================== */
+.primary-button a,
+button {
+	font-size: 14px;
+	font-weight: 700;
+	text-transform: uppercase;
+    background-color: transparent;
+	display: inline-block;
+	padding: 8px 20px;
+	color: #a3180b;
+	border: 2px solid #a3180b;
+    border-radius: 0.25rem;
+	transition: all 0.5s;
+}
+.primary-button a:hover,
+button:hover {
+	color: #fff;
+	background-color: rgba(163, 24, 11, 1);
+}
+
+/* ===========================
+        Section & Section Heading
+============================== */
+section {
+    border-bottom: 3px solid #eee;
+    padding-bottom: 100px;
+}
+/* destiné aux container d'infos couleurs gris foncés */
+section .classic {
+    background-color: #1e1f25;
+    margin-bottom: 1.7rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-radius: 0.25rem;
+    color: #fff;
+}
+section .classic h2 {
+    font-size: 1.4rem;
+    border-bottom: 1px solid white;
+}
+section .classic h3 {
+    font-size: 1rem;
+    text-decoration: underline;
+    font-weight: bold;
+}
+section .container-fluid.classic:last-child {
+    margin-bottom: 0;
+}
+.section-heading .container-fluid {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.section-heading h2 {
+    margin-top: 0px;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 50px;
+}
+/* ===========================
+        Page Heading
+============================== */
+.page-heading .container-fluid {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.page-heading h1 {
+    margin-top: 0px;
+    font-size: 38px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+.page-heading p {
+    font-size: 15px;
+    color: #4a4a4a;
+}
+
+/* ===========================
+            breadcrumb
+============================== */
+.breadcrumb {
+    background-color: #1e1f25;
+    margin-bottom: 1.7rem;
+}
+.breadcrumb li a {
+    color: #fff;
+}
+.breadcrumb li a:hover {
+    color: #a3180b;
+}
+.breadcrumb .active {
+    text-decoration: underline;
+    font-weight: bold;
+    color: #a3180b;
+}
+
+/* ============================
+        Pagination Bootstrap
+=============================== */
+ul.pagination {
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+.pagination li.disabled span {
+    color: #8f8e8d !important;
+}
+.pagination li.active span {
+    background-color: #a3180b !important;
+    color: #fff !important;
+    border-color: #000 !important;
+}
+.pagination li .page-link {
+    color: #000 !important;
+    transition: all 0.5s;
+}
+.pagination {
+    justify-content: flex-end;
+}
+/* ===========================
+            Tables
+============================== */
+table {
+    width: 100%;
+    margin-bottom: 0.5rem;
+}
+table tr th {
+    font-weight: normal;
+    font-size: 14px;
+}
+table tr td {
+    text-align: right;
+    vertical-align: bottom;
+}
+.default-table {
+    -webkit-overflow-scrolling: touch;
+    overflow-x: auto;
+    background-color: #f7f7f7;
+    padding: 50px;
+}
+.alternate-table {
+    margin-top: 50px;
+    -webkit-overflow-scrolling: touch;
+    overflow-x: auto;
+    background-color: #f7f7f7;
+    padding: 50px;
+}
+.alternate-table table td {
+    border-right: 2px solid #f7f7f7;
+}
+.alternate-table table td:last-child {
+    border-right: none;
+}
+
+/* ===========================
+        Table pagination
+============================== */
+ul.table-pagination {
+    padding: 0;
+    margin-top: 30px;
+    list-style: none;
+    text-align: center;
+}
+ul.table-pagination li {
+    display: inline-block;
+}
+ul.table-pagination li:first-child {
+    float: left;
+}
+ul.table-pagination li:last-child {
+    float: right;
+}
+ul.table-pagination li a {
+    display: inline-block;
+    height: 40px;
+    background-color: #e7e7e7;
+    text-align: center;
+    line-height: 40px;
+    padding: 0px 15px;
+    min-width: 40px;
+    color: #4a4a4a;
+    text-transform: uppercase;
+    font-size: 13px;
+    transition: all 0.5s;
+}
+ul.table-pagination li a:hover,
+ul.table-pagination li.active a {
+    background-color: #a3180b;
+    color: #fff;
+}
+
+/* ===========================
+        Formulaires
+============================== */
+.forms input,
+.forms select {
+    font-size: 14px;
+    color: #7a7a7a;
+    width: 100%;
+    height: 50px;
+    border-radius: 0px;
+    border: 2px solid #eee;
+    outline: none;
+    padding-left: 20px;
+    line-height: 50px;
+    margin-bottom: 40px;
+}
+.forms textarea {
+    font-size: 14px;
+    color: #7a7a7a;
+    width: 100%;
+    height: 160px;
+    max-height: 220px;
+    border-radius: 0px;
+    border: 2px solid #eee;
+    outline: none;
+    padding-left: 20px;
+    line-height: 50px;
+    margin-bottom: 40px;
+}
+.forms input:focus,
+.forms select:focus,
+.forms textarea:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: #a3180b;
+}
+.forms .radio-item,
+.forms .circle-item {
+    margin-bottom: 30px;
+}
+input[type="checkbox"],
+input[type="radio"] {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    display: block;
+    float: left;
+    margin-right: -2rem;
+    opacity: 0;
+    width: 1rem;
+    z-index: -1;
+}
+input[type="checkbox"] + label,
+input[type="radio"] + label {
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    letter-spacing: 0;
+    text-transform: none;
+    font-weight: 300;
+    background-color: #eee;
+    padding: 20px;
+    padding-right: 1rem;
+    position: relative;
+    min-width: 180px;
+    width: 100%;
+    display: inline-block;
+    line-height: 22px;
+}
+input[type="checkbox"] + label:before,
+input[type="radio"] + label:before {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-transform: none !important;
+}
+input[type="checkbox"] + label:before,
+input[type="radio"] + label:before {
+    border-radius: 0px;
+    background-color: #fff;
+    content: '';
+    display: inline-block;
+    line-height: 30px;
+    position: absolute;
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
+}
+.circle-item input[type="checkbox"] + label:before,
+.circle-item input[type="radio"] + label:before {
+    border-radius: 50%;
+}
+input[type="checkbox"]:checked + label:before,
+input[type="radio"]:checked + label:before {
+    content: '\f00c';
+    background-color: #a3180b;
+    color: #fff;
+}
+input[type="checkbox"] + label:before {
+    border-radius: 0;
+}
+input[type="radio"] + label:before {
+    border-radius: 0px;
+}
+
+/* ============================
+            Commentaires
+=============================== */
+/* colonne contenant les commentaires */
+.posts-container {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    max-height: 700px;
+    padding-right: 5px;
+    margin-bottom: 0.5rem;
+}
+/* la div qui contient tout le commentaire */
+div.one-post {
+    background-color: #353742;
+    border-radius: 0.25rem;
+    border: solid white 1px;
+    padding: 0.6rem;
+    margin-bottom: 0.5rem;
+    position: relative;
+}
+.one-post p {
+    color: #fff;
+    margin-bottom: 0.8rem;
+}
+.one-post p:last-of-type {
+    margin-bottom: 0;
+}
+.one-post:last-child {
+    margin-bottom: 0;
+}
+.one-post .post-date {
+    font-style: italic;
+    text-decoration: underline;
+}
+.one-post .post-location {
+    font-weight: bold;
+}
+.one-post .post-text {
+    line-height: 1.5;
+    word-wrap: break-word;
+}
+.one-post .post-flags {
+    color: red;
+    border: solid 2px red;
+    border-radius: 0.25rem;
+    font-weight: bold;
+    display: table;
+    padding: 0 2px;
+}
+.one-post .post-action {
+    position: absolute;
+    top: 0.6rem;
+    right: 0.6rem;
+}
+.one-post .post-action a {
+    padding: 0 8px;
+}/* container flex juste pour la partie admin ... quoique */
+.one-post .post-infos {
+    display: flex;
+    justify-content: space-between;
+}
+/* commentaire d'autre utilisateur */
+.one-post img {
+    float: left;
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+    border: solid white 2px;
+    border-radius: 10%;
+}
+/* ======================================
+        Affichage simplifié 
+        d'un utilisateur dans la partie admin
+========================================= */
+div.one-user {
+    background-color: #353742;
+    border-radius: 0.25rem;
+    border: solid white 1px;
+    padding: 0.6rem;
+    margin-bottom: 0.5rem;
+    position: relative;
+    display: flex;
+}
+.one-user > div:first-child img {
+    width: 160px;
+    height: 160px;
+}
+.one-user > div:last-child {
+    flex: 1;
+    padding-left: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.one-user > div:last-child div {
+    float: right;
+}
+.one-user > div:last-child table {
+    margin-bottom: 0;
+}
+.one-user > div:last-child table tr th,
+.one-user > div:last-child table tr td {
+    vertical-align: bottom;
+}
+.one-user .primary-button a {
+    padding: 2px 8px 6px 8px;
+}
+.posts-container .one-user:last-child {
+    margin-bottom: 0;
+}
+/* ===========================
+            Wrapper
+============================== */
+#wrapper {
+    display: -moz-flex;
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    -moz-flex-direction: row-reverse;
+    -webkit-flex-direction: row-reverse;
+    -ms-flex-direction: row-reverse;
+    flex-direction: row-reverse;
+    min-height: 100vh;
+}
+
+/* ===========================
+            Main
+============================== */
+#main {
+    -moz-flex-grow: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-grow: 1;
+    flex-grow: 1;
+    -moz-flex-shrink: 1;
+    -webkit-flex-shrink: 1;
+    -ms-flex-shrink: 1;
+    flex-shrink: 1;
+    width: 100%;
+}
+#main > .inner {
+    padding: 100px;
+}
+
+/* ===========================
+            Header
+============================== */
+#header {
+    display: -moz-flex;
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    position: relative;
+    background-color: #a3180b;
+    margin: -100px -100px 60px -100px;
+    height: 100px;
+}
+#header .logo {
+    width: 50%;
+    float: left;
+    display: inline-block;
+    height: 100px;
+    margin-left: 100px;
+}
+#header .logo p {
+    display: table;
+    margin: auto;
+    text-align: center;
+    margin-top: 32px;
+}
+#header .logo a {
+    font-size: 36px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #fff;
+}
+#header .logo a::after {
+    border-bottom: 2px solid white;
+    content: "";
+    display: block;
+    margin: auto;
+    width: 0%;
+    transition: 0.5s all;
+}
+#header .logo a:hover::after {
+    width: 100%;
+}
+#header .user-interface {
+    width: 50%;
+    float: right;
+    display: flex;
+    flex-direction: row;
+    height: 100px;
+}
+#header .user-interface > div > a {
+    font-size: 20px;
+    color: #fff;
+    display: block;
+    text-align: center;
+    color: #fff;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    border: solid white 2px;
+    border-radius: 20px;
+    background-color: rgba(255,255,255,0.0);
+    transition:  all 0.5s ease-out;
+}
+#header .user-interface > div > a:nth-child(2n+1) {
+    border-bottom: none;
+}
+#header .user-interface > div > a:hover {
+    background-color: rgba(255,255,255,0.3);
+}
+#header .user-interface > div {
+    flex-grow: 1;
+    text-align: center; 
+}
+#header .user-wl-cl {
+    padding-top: 7px;
+}
+#header .user-profile {
+    padding-top: 7px;
+    padding-left: 20px;
+}
+#header .user-picture {
+    flex-grow: 0.7 !important;
+    padding-right: 10px;
+}
+#header .user-picture img {
+    float: right;
+    width: 100px;
+    height: 100px;
+    border: solid white 2px;
+    border-radius: 10%;
+}
+
+/* ============================
+    Control-bar du carousel de cartes
+=============================== */
+.carousel-controlBar {
+    
+}
+.carousel-controlBar .col-3 > div > button {
+    text-align: center;
+    margin: auto;
+    display: block;
+}
+.carousel-controlBar .sorting {
+    float: left;
+}
+.carousel-controlBar .multi-select {
+    float: right;
+}
+
+/* ============================================
+                Carousel de cartes
+=============================================== */
+
+/* ------------ CONTAINER DES CARTES ------------ */
+.carousel-inner .one-card {
+    position: relative;
+    z-index: 10;
+    margin-bottom: 4px;
+    overflow: visible;
+    border-radius: 0.25rem;
+    transition: 0.25s ease-in-out;
+}
+.carousel-inner .one-card > img {
+    position: absolute;
+    display: block;
+    z-index: 100;
+    transition: 0.25s ease-in-out;
+    border-radius: 6.2%;
+}
+/* infos sur la possession des cartes dans la wishlist et la collection */
+.one-card .you-own {
+    position: absolute;
+    bottom: 5%;
+    right: 6%;
+    background-color: rgba(36, 37, 45, 0.6);
+    width: 70%;
+    height: 28%;
+    z-index: 1000;
+    border: solid black 1px;
+    border-radius: 0.25rem;
+    display: flex;
+}
+.one-card .you-own p {
+    flex: 0 0 50%;
+    text-align: center;
+    margin-bottom: 0;
+    color: black;
+}
+.one-card .you-own p:first-child {
+    padding-left: 2px;
+    padding-top: 3px;
+}
+.one-card .you-own p strong {
+    font-size: 30px;
+    color: white;
+    line-height: 30px;
+}
+.row.small .one-card .you-own p strong {
+    line-height: 30px;
+    font-size: 16px;
+}
+.row.medium .one-card .you-own p strong {
+    line-height: 45px;
+    font-size: 30px;
+}
+.row.large .one-card .you-own p strong {
+    line-height: 60px;
+    font-size: 45px;
+}
+
+/* ------------ OVERLAY CARD ------------ */
+.overlay-card {
+    position: absolute;
+    opacity: 1;
+    z-index: 2000;
+    border: solid black 1px;
+    border-radius: 0.25rem;
+}
+
+/* -------- OVERLAY CARD - OVERLAY CONTAINER -------- */
+/* Il s'agit de la div qui contient tout le contenu de l'overlay */
+.overlay-card .overlay-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    color: #fff;
+}
+.overlay-card .overlay-container .flex-container {
+    display: flex;
+}
+.overlay-card .overlay-container .flex-container .top-of-card {
+    position: relative;
+    flex-shrink: 0;
+}
+.overlay-card .overlay-container .flex-container .top-of-card:hover {
+    border: solid 1.5px white;
+    border-radius: 0.25rem;
+    z-index: 1000;
+}
+/* Exception du dernier container de la ligne */
+.overlay-card .overlay-container.last .form-container {
+    order: 1;
+}
+.overlay-card .overlay-container.last .top-of-card {
+    order: 2;
+}
+/* -------- OVERLAY CARD - FORM CONTAINER -------- */
+/* C'est le conteneur des deux formulaires */
+.overlay-card .form-container {
+    background-color: rgba(36, 37, 45, 0.8);
+}
+.overlay-card .form-container h3 {
+    font-size: 13px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 0.4rem;
+}
+.overlay-card .form-container .form-group {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 0.3rem;
+    align-content: stretch;
+}
+.overlay-card .form-container form {
+    background-color: rgba(255,255,255,0.2);
+    margin-bottom: 4%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    height: 48%;
+}
+.overlay-card .form-container form:last-child {
+    margin-bottom: 0;
+}
+.overlay-card .form-container .form-group div {
+    flex: 0 0 50%;
+}
+.overlay-card .form-container .form-group label {
+    flex: 0 0 60%;
+    font-size: 11px;
+    text-align: center;
+    display: block;
+}
+.overlay-card .form-container .form-group input {
+    display: block;
+    width: 100%;
+}
+.overlay-card .form-container button {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 2px 5px;
+    font-size: 9px;
+}
+
+/* ------- exceptions pour la taille "Medium" ------- */
+.row.medium .overlay-card .form-container h3 {
+    font-size: 11px;
+}
+.row.medium .overlay-card .form-container .form-group div:first-child {
+    flex: 0 0 60%;
+}
+.row.medium .overlay-card .form-container .form-group div:last-child {
+    flex: 0 0 40%;
+}
+/* ------- exceptions pour la taille "Small" ------- */
+.row.small .overlay-card .form-container form {
+    padding-bottom: 0;
+}
+.row.small .overlay-card .form-container h3 {
+    font-size: 10px;
+    margin-bottom: 0.2rem;
+}
+.row.small .overlay-card .form-container .form-group {
+    margin-bottom: 0;
+}
+.row.small .overlay-card .form-container .form-group div:first-child {
+    flex: 0 0 65%;
+}
+.row.small .overlay-card .form-container .form-group div:last-child {
+    flex: 0 0 35%;
+}
+/* -------- OVERLAY CARD - INFO CARDS -------- */
+/* C'est le container des 5 p content les infos de la carte */
+.overlay-card table.info-card {
+    line-height: 1;
+    background-color: rgba(36, 37, 45, 0.8);
+    font-size: 12px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin-bottom: 0;
+    border-collapse: collapse;
+}
+.overlay-card .info-card tr th {
+    padding-left: 3px;
+}
+.overlay-card .info-card tr td {
+    font-weight: bold;
+    padding-right: 3px;
+}
+/* ------- exceptions pour la taille "Small" ------- */
+.row.small .overlay-card .info-card tr th,
+.row.small .overlay-card .info-card tr td {
+    font-size: 11px;
+}
+/* ------------------------------------------------------- */
+/* petit bouton d'agrandissement de l'image en hover */
+/* Il est en position absolute par rapport à card-info */
+.carousel-inner .overlay-card .scaler {
+    position: absolute;
+    bottom: -1px;
+    right: -25px;
+    display: block;
+    padding: 1px 6px;
+    font-size: 14px;
+    border: solid black 1px;
+    border-width: 1px 1px 1px 0px;
+    border-radius: 0.25rem 0.25rem 0.25rem 0;
+    background-color: rgba(36, 37, 45, 0.8);
+}
+/* exception de la dernière ligne */
+.carousel-inner .overlay-container.last .scaler {
+    left: -25px;
+    right: unset;
+    border-width: 1px 0 1px 1px;
+    border-radius: 0.25rem 0.25rem 0 0.25rem;
+}
+
+/* effets du hover sur le bouton scaler */
+.carousel-inner .overlay-card.scaleUp {
+    border: none !important;
+}
+.carousel-inner .one-card img.scaleUp {
+    width: 205% !important;
+    height: 230% !important;
+    top:0 !important;
+    left:0 !important;
+    z-index: 1000 !important;
+}
+.carousel-inner .one-card img.scaleUpLeft {
+    right: 0 !important;
+    left: unset !important;
+}
+.carousel-inner .one-card.scaleUp {
+    background-color: transparent;
+    z-index: 1000 !important;
+}
+/* ------------------------------------------------------- */
+/* CAROUSEL BOOTSTRAP */
+div.carousel {
+    background-color: #24252d;
+    overflow: visible;
+    border-radius: 0.25rem;
+}
+div.carousel .container-fluid {
+    overflow: visible;
+}
+div.carousel .row {
+    position: relative;
+    justify-content: space-between;
+    overflow: visible;
+    padding-bottom: 120px;
+}
+div.carousel .carousel-control-prev {
+    margin-left: -60px;
+    background-color: #24252d;
+    width: 60px;
+    border-top-left-radius:  0.25rem;
+    border-bottom-left-radius: 0.25rem;
+}
+div.carousel .carousel-control-next {
+    margin-right: -60px;
+    background-color: #24252d;
+    width: 60px;
+    border-top-right-radius:  0.25rem;
+    border-bottom-right-radius: 0.25rem;
+}
+div.carousel .carousel-indicators li {
+    width: 20px;
+    height: 6px;
+    border-radius: 0.25rem;
+}
+
+/* -------------------------
+Taille du container des cartes
+---------------------------- */
+.row.small .one-card,
+.row.small .top-of-card {
+    width: 85px;
+    height: 117px;
+}
+.row.medium .one-card,
+.row.medium .top-of-card {
+    width: 127.5px;
+    height: 175.5px;
+}
+.row.large .one-card,
+.row.large .top-of-card {
+    width: 170px;
+    height: 234px;
+}
+/* -------------------------
+Taille d l'image de la carte
+---------------------------- */
+.row.small .one-card > img {
+    width: 75px;
+    height: 107px;
+    top: 5px;
+    left: 5px;
+}
+.row.medium .one-card > img {
+    width: 112.5px;
+    height: 160.5px;
+    top: 7.5px;
+    left: 7.5px;
+}
+.row.large .one-card > img {
+    width: 150px;
+    height: 214px;
+    top: 10px;
+    left: 10px;
+}
+/* -------------------------
+Taille de l'overlay JS
+---------------------------- */
+.row.small .overlay-card {
+    width: 150px;
+    height: 200px;
+}
+.row.medium .overlay-card {
+    width: 220px;
+    height: 262.5px;
+}
+.row.large .overlay-card {
+    width: 299px;
+    height: 320px;
+}
+/* -------------------------
+Taille du tableau info cards
+---------------------------- */
+.row.small table.info-card {
+    height: 83px;
+}
+.row.medium table.info-card {
+    height: 86.7px;
+}
+.row.large table.info-card {
+    height: 86px;
+}
+/*-------------------------------------
+            Couleur des cartes
+--------------------------------------- */
+.one-card.incolore-land {
+    background-color: rgba(191,191,191,0.7);
+}
+.one-card.land {
+    background: linear-gradient(#000,#fff);
+}
+.one-card.red {
+    background-color: rgba(179,73,86);
+}
+.one-card.blue {
+    background-color: rgba(98,128,166);
+}
+.one-card.green {
+    background-color: rgba(78,106,94);
+}
+.one-card.white {
+    background-color: rgba(255,255,255,0.9);
+}
+.one-card.black {
+    background-color: rgba(0,0,0,0.5);
+}
+
+
+/* ##################################################
+#####################################################
+
+                    PAGES UNIQUES
+
+#####################################################
+##################################################### */
+section.main-banner {
+    padding-bottom: 60px;
+}
+.main-banner .container-fluid {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+.main-banner .banner-content {
+	background-image: url(../images/pages/home/some_cards2.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+.main-banner .banner-content .banner-caption {
+    max-width: 450px;
+	background-color: rgba(250,250,250,0.95);
+	margin: 50px;
+	padding: 50px;
+}
+.main-banner .banner-content .banner-caption h4 {
+	font-size: 38px;
+	font-weight: 700;
+	color: #31323a;
+	letter-spacing: 0.25px;
+	margin: 0px;
+}
+.main-banner .banner-content .banner-caption em {
+	font-style: normal;
+	color: #a3180b;
+}
+.main-banner .banner-content .banner-caption span {
+	font-size: 15px;
+	color: #aaaaaa;
+	letter-spacing: 0.5px;
+	display: inline-block;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.main-banner .banner-content .banner-caption p {
+	margin-bottom: 30px;
+}
+
+/* ===========================
+            Top-Image
+============================== */
+section.top-image {
+    padding-bottom: 60px;
+}
+.top-image {
+    margin-top: 60px;
+}
+.top-image .container-fluid {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.top-image h4 {
+    margin: 30px 0px 20px 0px;
+}
+.top-image .primary-button {
+    margin-top: 30px;
+}
+
+/* ===========================
+            Left-Image
+============================== */
+section.left-image {
+    padding-bottom: 60px;
+}
+.left-image {
+    margin-top: 60px;
+}
+.left-image .container-fluid {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.left-image .right-content {
+    margin-left: 15px;
+}
+.left-image h4 {
+    margin: 0px 0px 20px 0px;
+}
+.left-image .primary-button {
+    margin-top: 30px;
+}
+
+/* ===========================
+            Right-image
+============================== */
+section.right-image {
+    border-bottom: none;
+    padding-bottom: 0px;
+}
+.right-image {
+    margin-top: 60px;
+}
+.right-image .container-fluid {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.right-image .left-content {
+    margin-right: 15px;
+}
+.right-image h4 {
+    margin: 0px 0px 20px 0px;
+}
+.right-image .primary-button {
+    margin-top: 30px;
+}
+
+/* ===========================
+            All-blocks
+============================== */
+/*
+    - Page des Blocks -
+        3 colonnes
+*/
+section.all-blocks {
+    margin-top: 0px;
+}
+.all-blocks .col-md-4 {
+    padding-left: 2px;
+    padding-right: 2px;
+    margin-bottom: 4px;
+}
+.all-blocks .one-block {
+    margin-bottom: 3px;
+    background-color: #eaebef;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.5s;
+    height: 100%;
+}
+.all-blocks .one-block:hover {
+    background-color: rgba(163, 24, 11, 1);
+    color: #fff;
+}
+.all-blocks .one-block:hover h4,
+.all-blocks .one-block:hover h6,
+.all-blocks .one-block:hover p {
+    color: #fff;
+}
+.all-blocks .one-block .icon {
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    margin-bottom: 15px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    transition: all 0.5s;
+}
+.all-blocks .icon {background-image: url(../images/icons/blocks/mtg_black_bords.png);}
+.all-blocks .one-block:hover .icon {background-image: url(../images/icons/blocks/mtg_white_bords.png);}
+
+.all-blocks .one-block h4 {
+    margin-bottom: 10px;
+    transition: all 0.5s;
+}
+.all-blocks .one-block  p {
+    margin-bottom: 0px;
+    transition: all 0.5s;
+}
+/* ===========================
+            All-ext
+============================== */
+/*
+    - Page des Extensions -
+        12 colonnes
+*/
+section.all-ext {
+    margin-top: 0px;
+}
+/* ----------- Accordéon ----------- */
+.all-ext #accordion button {
+    color: #fff;
+}
+.all-ext #accordion .card-header {
+    background-color: #24252d;
+    padding: 0.25rem 0.5rem;
+}
+.all-ext #accordion .card-body {
+    padding: 0.5rem;
+    padding-bottom: 0.3rem;
+}
+/* ---- Contenu de l'acordéon  ----*/
+.all-ext .col-md-2 {
+    padding-left: 2px;
+    padding-right: 2px;
+}
+.all-ext .one-ext {
+    padding: 10px 5px 5px 5px;
+    height: 150px;
+    margin-bottom: 3px;
+    background-color: #eaebef;
+    text-align: center;
+    transition: all 0.5s;
+}
+.all-ext .one-ext:hover {
+    background-color: rgba(163, 24, 11, 1);
+}
+.all-ext .one-ext:hover h4,
+.all-ext .one-ext:hover h6,
+.all-ext .one-ext:hover p {
+    color: #fff;
+}
+.all-ext .one-ext .icon {
+    width: 35px;
+    height: 29px;
+    margin-bottom: 4px;
+    position: relative;
+    display: inline-block;
+    background-size: cover;
+    background-repeat: no-repeat;
+    transition: all 0.5s;
+}
+
+.all-ext .one-ext .icon {background-image: url(../images/ext-icons/ext_logo_black.png);}
+.all-ext .one-ext:hover .icon {background-image: url(../images/ext-icons/ext_logo_white.png);}
+
+.all-ext .one-ext h4 {
+    margin-bottom: 2px;
+    transition: all 0.5s;
+    font-size: 15px;
+}
+.all-ext .one-ext h6 {
+    margin-bottom: 2px;
+    font-size: 0.8rem;
+}
+.all-ext .one-ext  p {
+    margin-bottom: 0px;
+    transition: all 0.5s;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    bottom: 5px;
+}
+
+/* ===========================
+            This block
+============================== */
+/*
+    - Page d'un bloc spécifique -
+    2 colonnes, une 8 et une 4
+*/
+section.this-block .container-fluid {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.this-block .col-md-8,
+.this-block .col-md-4 {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.this-block .block-infos, 
+.this-block .block-stats {
+    padding: 10px;
+    height: 100%;
+}
+.this-block h3 {
+    font-size: 1rem;
+}
+.this-block .block-infos .icon {
+    width: 35px;
+    height: 29px;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 15px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    transition: all 0.5s;
+    background-image: url(../images/icons/ext/ext_logo_black.png);
+}
+.this-block .block-infos .one-ext:hover .icon {
+    background-image: url(../images/icons/ext/ext_logo_white.png);
+}
+.this-block .block-infos .one-ext {
+    background-color: #cecfd6;
+    text-align: center;
+    height: 200px;
+    padding: 10px;
+    margin-bottom: 3px;
+    transition: all 0.5s;
+}
+.this-block .block-infos .one-ext:hover {
+    background-color: rgba(163, 24, 11, 1);
+}
+.this-block .block-infos .one-ext:hover h4,
+.this-block .block-infos .one-ext:hover h6,
+.this-block .block-infos .one-ext:hover p {
+    color: #fff;
+}
+.this-block .block-infos .one-ext p {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    bottom: 5px;
+}
+.this-block .block-infos .col-md-4 {
+    padding-left: 2px;
+    padding-right: 2px;
+}
+.this-block .block-stats {
+    
+}
+/* ===========================
+            This extension
+============================== */
+/*
+    - Page d'une extenstion spécifique -
+
+*/
+section.this-extension {
+    
+}
+
+/* ===========================
+            This card
+============================== */
+/*
+    - Page d'une carte spécifique -
+        3 colonnes
+*/
+section.this-card {
+
+}
+.this-card .card-picture img {
+    max-height: 700px;
+    max-width: 490px;
+    display: block;
+    margin: auto;
+    border-radius: 5%;
+}
+/* ===========================
+        this-user (profil)
+============================== */
+/*
+    - Page de l'utilisateur (son profil) -
+        3 colonnes et puis 2
+*/
+section.this-user {
+
+}
+.user-data .primary-button {
+    text-align: center;
+}
+.user-data .primary-button a {
+    padding: 2px 5px;
+}
+.user-data .profile-pic img {
+    border-radius: 5%;
+    border: solid white 2px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+/* ===========================
+        user-all-posts
+============================== */
+/*
+    - concerne tous les commentaires
+        postés par l'utilisateur -
+*/
+section.user_all_posts {
+
+}
+
+/* ===========================
+        others-all-posts
+    - concerne tous les commentaires
+    postés par d'autres utilisateurs 
+    sur le profil de cet utilisateur -
+============================== */
+section.others_all_posts {
+
+}
+
+/* ===========================
+            this-collection
+============================== */
+section.this-collection {
+
+}
+.this-collection form .form-row {
+    margin-bottom: 15px;
+}
+.this-collection form .form-row:last-child {
+    margin-bottom: 0px;
+}
+.this-collection form .col-12 button {
+    border-radius: 0.25rem;
+    display: block;
+    margin: auto;
+}
+.this-collection .collec-manage .dropdown {
+    padding-top: 32px;
+    text-align: center;
+    width: 100%;
+}
+.this-collection .collec-manage .dropdown-menu {
+    width: 100% !important;
+}
+.this-collection .collec-manage .dropdown a {
+    width: 100% !important;
+}
+/* ===========================
+            this-wishlist
+============================== */
+section.this-wishlist {
+
+}
+.this-wishlist form .form-row {
+    margin-bottom: 15px;
+}
+.this-wishlist form .form-row:last-child {
+    margin-bottom: 0px;
+}
+.this-wishlist form .col-12 button {
+    border-radius: 0.25rem;
+    display: block;
+    margin: auto;
+}
+.this-wishlist .wishlist-manage .dropdown {
+    text-align: center;
+    width: 100%;
+}
+.this-wishlist .wishlist-manage .dropdown-menu {
+    width: 100% !important;
+}
+.this-wishlist .wishlist-manage .dropdown a {
+    width: 100% !important;
+}
+/* ===========================
+          Contact Form
+============================== */
+section.contact-form {
+    
+}
+.contact-form {
+    margin-top: 0px;
+}
+.contact-form .container-fluid {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.contact-form input {
+    font-size: 14px;
+    color: #7a7a7a;
+    width: 100%;
+    height: 50px;
+    border-radius: 0px;
+    border: 2px solid #eee;
+    outline: none;
+    padding-left: 20px;
+    line-height: 50px;
+    margin-bottom: 40px;
+}
+.contact-form input:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: #a3180b;
+}
+.contact-form textarea {
+    font-size: 14px;
+    color: #7a7a7a;
+    width: 100%;
+    max-width: 100%;
+    height: 160px;
+    max-height: 220px;
+    border-radius: 0px;
+    border: 2px solid #eee;
+    outline: none;
+    padding-left: 20px;
+    line-height: 50px;
+    margin-bottom: 40px;
+}
+.contact-form textarea:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: #a3180b;
+}
+.contact-form button {
+    cursor: pointer;
+}
+/* ===========================
+          Search result
+============================== */
+section.search-result {
+
+}
+.search-result > div {
+    padding-bottom: 10px;
+    border-bottom: 3px solid #eee;
+    margin-bottom: 10px;
+}
+.search-result .one-card {
+
+}
+.search-result .one-card > img {
+    width: 70% !important;
+}
+
+/* ====================================
+                Login Page
+======================================= */
+section.login {
+
+}
+.login .container-fluid {
+    padding-right: 0;
+    padding-left: 0;
+}
+.login .col-md-6:first-child {
+    border-right: 3px solid #eee;
+}
+.login form {
+    height: 100%;
+}
+.login form button {
+    margin: auto;
+    display: block;
+}
+.login h3 {
+    text-decoration: underline;
+}
+
+/* ====================================
+          Administration - Global
+======================================= */
+section.admin table td,
+section.admin table th {
+    text-align: center;
+}
+#ajax-response {
+    position: fixed;
+    top: 50px;
+    z-index: 9000;
+}
+#ajax-response p {
+    margin: 0;
+    font-weight: bold;
+    font-size: 18px;
+}
+/* ====================================
+          Administration - Home
+======================================= */
+section.admin-home {
+
+}
+.admin-actions > div {
+    height: 150px;
+    background-color: #cecfd6;
+    border-radius: 0.25rem;
+    margin-bottom: 0.75rem;
+    color: #31323a;
+    padding-top: 10px;
+    transition: 0.5s all;
+    position: relative;
+}
+.admin-actions > div:last-child {
+    margin-bottom: 0;
+}
+.admin-actions > div > h3 {
+    text-align: center;
+    font-size: 23px;
+    text-decoration: none;
+}
+.admin-actions > div > img {
+    display: block;
+    margin: auto;
+    height: 70%;
+    width: auto;
+}
+.admin-actions > div:hover {
+    background-color: rgba(163, 24, 11, 1);
+    color: #fff;
+}
+
+section.comments-index {
+
+}
+section.comments-index .primary-button a {
+    padding: 0 8px;
+}
+/* =======================================
+        Administration - Commentaires / Flagged
+========================================== */
+section.admin-posts .posts-container
+section.admin-flagged .posts-container {
+    max-height: 1000px;
+}
+/* ##################################################
+#####################################################
+
+                    SIDEBAR
+
+#####################################################
+##################################################### */
+
+#sidebar {
+    -moz-flex-grow: 0;
+    -webkit-flex-grow: 0;
+    -ms-flex-grow: 0;
+    flex-grow: 0;
+    -moz-flex-shrink: 0;
+    -webkit-flex-shrink: 0;
+    -ms-flex-shrink: 0;
+    flex-shrink: 0;
+    -moz-transition: margin-left 0.5s ease, box-shadow 0.5s ease;
+    -webkit-transition: margin-left 0.5s ease, box-shadow 0.5s ease;
+    -ms-transition: margin-left 0.5s ease, box-shadow 0.5s ease;
+    transition: margin-left 0.5s ease, box-shadow 0.5s ease;
+    background-color: #24252d;
+    position: relative;
+    width: 420px;
+}
+
+#sidebar > .inner {
+    position: relative;
+    width: 420px;
+    padding: 0px 50px;
+}
+
+#sidebar > .inner > #search  {
+    background-color: #2d2e39;
+    height: 100px;
+    width: 420px;
+    display: inline-block;
+    margin-left: -50px;
+}
+#sidebar > .inner > #search input {
+	width: 100%;
+	height: 100px;
+	background-color: transparent;
+	border: none;
+	padding: 0px 50px;
+	color: #fff;
+}
+section#search {
+    border-bottom: none;
+    padding-bottom: 0px;
+}
+#search form:before {
+	font-family: 'FontAwesome';
+    -moz-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    -ms-transform: scaleX(-1);
+    transform: scaleX(-1);
+    color: #fff;
+    content: '\f002';
+    cursor: default;
+    display: block;
+    position: absolute;
+    right: 50px;
+    text-align: center;
+    top: 35px;
+    font-size: 18px;
+}
+
+#sidebar .toggle {
+    text-decoration: none;
+    -moz-transition: left 0.5s ease;
+    -webkit-transition: left 0.5s ease;
+    -ms-transition: left 0.5s ease;
+    transition: left 0.5s ease;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    border: 0;
+    display: block;
+    color: #fff;
+    height: 100px;
+    left: 420px;
+    line-height: 100px;
+    outline: 0;
+    overflow: hidden;
+    position: absolute;
+    text-align: center;
+    text-indent: 100px;
+    top: 0;
+    width: 100px;
+    z-index: 10000;
+}
+
+#sidebar .toggle:before {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-transform: none !important;
+}
+
+#sidebar .toggle:before {
+    content: '\f0c9';
+    font-size: 2rem;
+    height: inherit;
+    left: 0;
+    line-height: inherit;
+    position: absolute;
+    text-indent: 0;
+    top: 0;
+    width: inherit;
+}
+
+#sidebar.inactive {
+    margin-left: -420px;
+}
+
+@media screen and (max-width: 1680px) {
+    #sidebar {
+        width: 380px;
+    }
+    #sidebar > .inner {
+        padding: 0px 30px;
+        width: 380px;
+    }
+    #sidebar .toggle {
+        height: 100px;
+        left: 380px;
+        line-height: 100px;
+    }
+    #sidebar .toggle:before {
+        font-size: 24px;
+    }
+    #sidebar.inactive {
+        margin-left: -380px;
+    }
+    #sidebar > .inner > #search  {
+	    width: 380px;
+	    margin-left: -30px;
+	}
+	#menu {
+		margin-top: 30px;
+	}
+	.featured-posts {
+		margin-left: -30px!important;
+		margin-right: -30px!important;
+		padding: 30px!important;
+	}
+}
+
+@media screen and (max-width: 1280px) {
+    #sidebar {
+        box-shadow: 0 0 5em 0 rgba(0, 0, 0, 0.175);
+        height: 100%;
+        left: 0;
+        position: fixed;
+        top: 0;
+        z-index: 10000;
+    }
+    #sidebar.inactive {
+        box-shadow: none;
+    }
+    #sidebar > .inner {
+        -webkit-overflow-scrolling: touch;
+        height: 100%;
+        left: 0;
+        overflow-x: hidden;
+        overflow-y: auto;
+        position: absolute;
+        top: 0;
+    }
+    #sidebar > .inner:after {
+        content: '';
+        display: block;
+        height: 4em;
+        width: 100%;
+    }
+    #sidebar .toggle {
+        width: 6em;
+    }
+    #sidebar .toggle:before {
+        font-size: 1.5rem;
+        color: #fff;
+        background-color: rgba(163, 24, 11, 0.75);
+    }
+    body.is-preload #sidebar {
+        display: none;
+    }
+}
+
+/* ------- Media query perso -------  */
+@media screen and (max-width: 1000px) {
+    #header .logo p {
+        font-size: 30px !important;
+        margin-top: 20px !important;
+    }
+    #header .user-interface a {
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (max-width: 890px) {
+    #header .logo {
+        width: 30% !important;
+    }
+    #header .logo p {
+        margin-top: 18px !important;
+    }
+    #header .logo p a {
+        font-size: 22px !important;
+    }
+    #header .user-interface {
+        width: 70% !important
+    }
+    #header .user-interface a {
+        font-size: 12px !important;
+    }
+    #header .user-interface .user-wl-cl,
+    #header .user-interface .user-profile {
+        padding-top: 20px !important;
+    }
+}
+/* ----------------------------------- */
+@media screen and (max-width: 845px) {
+	#main > .inner {
+	    padding: 15px;
+	}
+	#header {
+	    margin: -15px!important;
+	}
+	section.main-banner {
+		margin-top: 30px;
+	}
+    #sidebar .toggle {
+        text-indent: 8.25em;
+        width: 7.25em;
+    }
+    #sidebar .toggle:before {
+        color: #fff;
+        margin-left: -0.0855em;
+        margin-top: -0.25em;
+        font-size: 20px;
+        z-index: 1;
+    }
+    #sidebar .toggle:before {
+    	background-color: transparent;
+    }
+    #sidebar .toggle:after {
+        background: rgba(163, 24, 11, 0.75);
+        border-radius: 5px;
+        content: '';
+        height: 60px;
+        left: 15px;
+        position: absolute;
+        top: 15px;
+        width: 80px;
+    }
+    .left-image .right-content {
+    	margin-top: 40px;
+    	margin-left: 0px;
+    }
+    .right-image .left-content {
+    	margin-bottom: 40px;
+    	margin-right: 0px;
+    }
+    .main-banner {
+    	text-align: center;
+    }
+    .main-banner .banner-content .banner-caption {
+    	padding: 30px;
+    }
+    .contact-form button {
+        margin-bottom: 30px;
+    }
+}
+
+/* ===========================
+    Sidebar : Featured Posts
+============================== */
+
+.featured-posts {
+	margin-top: 30px;
+	position: relative;
+	background-color: #1e1f25;
+	margin-left: -50px;
+	margin-right: -50px;
+	padding: 50px;
+}
+.featured-posts .heading h2 {
+	font-size: 19px;
+	color: #fff;
+	border-bottom: 1px solid #2d2e39;
+	padding-bottom: 10px;
+	margin-bottom: 25px;
+}
+.featured-posts p {
+	margin-top: 20px;
+	color: #fff;
+}
+.owl-carousel .owl-dots {
+	position: absolute;
+	top: -55px;
+	right: 0;
+}
+.owl-carousel button.owl-dot {
+	width: 10px;
+	height: 10px;
+	background-color: #2d2e39!important;
+	margin-left: 5px;
+	outline: none;
+}
+.owl-carousel button.active {
+	background-color: #535ba0!important;
+}
+
+/* ===========================
+        Sidebar : footer
+============================== */
+
+#footer .copyright {
+	text-align: center;
+    color: #fff;
+    font-size: 14px;
+    margin-top: 50px;
+}
+#footer .copyright p {
+	margin-bottom: 0px;
+}
+#footer p a {
+    margin-top: 5px;
+    background-color: #a3180b;
+    border-color: #fff;
+}
+#footer p a:hover {
+    color: #a3180b;
+    background-color: #fff;
+    border-color: #000;
+}
+/* ===========================
+        Menu des extensions
+============================== */
+
+/* ------ Pour les icones ------ */
+#menu ul li a img {
+    width: 21px;
+}
+#menu {
+	margin-top: 30px;
+}
+
+/* ----- Pour les dates des blocks ----- */
+#menu ul span.opener i {
+    
+}
+#menu ul {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: #3d4449;
+    font-family: "Roboto Slab", serif;
+    font-family: 400;
+    letter-spacing: 0.075em;
+    list-style: none;
+    margin-bottom: 0;
+    padding: 0;
+}
+#menu ul a,
+#menu ul span {
+	color: #fff;
+    border-bottom: 0;
+    cursor: pointer;
+    display: block;
+    font-size: 15px;
+    font-weight: 300;
+    padding: 3px 0px;
+}
+#menu ul li ul a,
+#menu ul li ul span {
+    padding: 3px 0px;
+}
+
+#menu ul a:hover,
+#menu ul span:hover {
+    color: #a3180b;
+}
+#menu ul a.opener,
+#menu ul span.opener {
+    -moz-transition: color 0.2s ease-in-out;
+    -webkit-transition: color 0.2s ease-in-out;
+    -ms-transition: color 0.2s ease-in-out;
+    transition: color 0.2s ease-in-out;
+    text-decoration: none;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    position: relative;
+}
+#menu ul a.opener:before,
+#menu ul span.opener:before {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-transform: none !important;
+}
+#menu ul a.opener:before,
+#menu ul span.opener:before {
+    -moz-transition: color 0.2s ease-in-out, -moz-transform 0.2s ease-in-out;
+    -webkit-transition: color 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
+    -ms-transition: color 0.2s ease-in-out, -ms-transform 0.2s ease-in-out;
+    transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
+    color: #fff;
+    content: '\f078';
+    position: absolute;
+    right: 0;
+}
+#menu ul a.opener:hover:before,
+#menu ul span.opener:hover:before {
+    color: #a3180b;
+}
+#menu ul a.opener.active + ul,
+#menu ul span.opener.active + ul {
+    display: block;
+}
+#menu ul a.opener.active:before,
+#menu ul span.opener.active:before {
+    -moz-transform: rotate(-180deg);
+    -webkit-transform: rotate(-180deg);
+    -ms-transform: rotate(-180deg);
+    transform: rotate(-180deg);
+}
+#menu > ul > li {
+    border-top: solid 1px #1a1b20;
+}
+#menu > ul > li > ul {
+    color: #9fa3a6;
+    display: none;
+    margin: 0.5em 0 0.5em 0;
+    padding-left: 1em;
+}
+#menu > ul > li > ul a,
+#menu > ul > li > ul span {
+    font-size: 13px;
+}
+#menu > ul > li > ul > li {
+    margin: 0.125em 0 0 0;
+    padding: 0.125em 0 0 0;
+}
+#menu > ul > li:first-child {
+    border-top: 0;
+    margin-top: 0;
+    padding-top: 0;
+}

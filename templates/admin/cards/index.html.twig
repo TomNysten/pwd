@@ -1,0 +1,56 @@
+{% extends './layout.html.twig' %}
+
+{% block title %}Cards index{% endblock %}
+
+{% block content %}
+    <!-- Page Heading -->
+    <div class="page-heading">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Administration - Cartes</h1>
+                    <p>Visuallisez les cartes du site.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="admin users-index">
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>CardId</th>
+                    <th>CardName</th>
+                    <th>CardSetNum</th>
+                    <th>CardAlter</th>
+                    <th>CardImage</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for card in cards %}
+                <tr>
+                    <td>{{ card.cardId }}</td>
+                    <td>{{ card.cardName }}</td>
+                    <td>{{ card.cardSetNum }}</td>
+                    <td>{{ card.cardAlter }}</td>
+                    <td>{{ card.cardImage }}</td>
+                    <td>
+                        <a href="{{ path('cards_show', {'cardId': card.cardId}) }}">show</a>
+                        <a href="{{ path('cards_edit', {'cardId': card.cardId}) }}">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        {{ knp_pagination_render(cards) }}
+        <a href="{{ path('cards_new') }}">Create new</a>
+    </section>
+
+{% endblock %}

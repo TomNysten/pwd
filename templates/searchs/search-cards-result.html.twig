@@ -1,0 +1,107 @@
+{% extends './layout.html.twig' %}
+
+{% block content %}
+
+    <!-- Page Heading -->
+    <div class="page-heading">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Résultats de la recherche</h1>
+                    <p>La recherche vous a retourné <strong>{{ total }}</strong> résultats.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="search-result">
+
+        {% for card in cards %}
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="one-card"
+                         data-id="{{ card.cardId }}"
+                         data-title="{{ card.cardName }}"
+                         data-color="{{ card.cardColor.name }}"
+                         data-type="{{ card.cardType.name }}"
+                         data-rarity="{{ card.cardRarity.name }}"
+                         data-ext="{{ card.cardSet.name }}"
+                         data-ext-num="{{ card.cardSetNum }}">
+                        <a href="{{ path('this-card', {extension : card.cardSet.name, id: card.cardId }) }}">
+                            <img src="{{ asset('assets/images/cards/'~ card.cardSet.block.name ~"/"~ card.cardSet.name ~ "/" ~ card.cardImage) }}.jpeg"
+                                 alt="{{ card.cardName }}">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <table>
+                        <tr>
+                            <th>Titre : </th>
+                            <td><strong>{{ card.cardName }}</strong></td>
+                        </tr>
+                        <tr>
+                            <th>Couleur : </th>
+                            <td><strong>{{ card.cardColor.name }}</strong></td>
+                        </tr>
+                        <tr>
+                            <th>Type : </th>
+                            <td><strong>{{ card.cardType.name }}</strong></td>
+                        </tr>
+                        <tr>
+                            <th>Rareté : </th>
+                            <td><strong>{{ card.cardRarity.name }}</strong></td>
+                        </tr>
+                        <tr>
+                            <th>Extension : </th>
+                            <td>
+                                <strong>
+                                    <a href="{{ path('this-extension', {name : card.cardSet.name }) }}">
+                                        {{ card.cardSet.name }}
+                                    </a>
+                                </strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Numéro : </th>
+                            <td><strong>{{ card.cardSetNum }}</strong></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-search">
+                        <form action="" class="add-wishlist">
+                            <h4>Add to Wishlist</h4>
+                            <div class="form-group">
+                                <div>
+                                    <label for="search-wishlist-add">Quantité</label>
+                                </div>
+                                <div>
+                                    <input id="search-wishlist-add" type="number" name="remove" value="1" min="0" max="99">
+                                </div>
+                            </div>
+                            <button class="btn-wishlist" type="submit">Ajouter</button>
+                        </form>
+
+                        <form action="" class="add-collection">
+                            <h4>Add to Collection</h4>
+                            <div class="form-group">
+                                <div>
+                                    <label for="search-collection-add">Quantité</label>
+                                </div>
+                                <div>
+                                    <input id="search-collection-add" type="number" name="remove" value="1" min="0" max="99">
+                                </div>
+                            </div>
+                            <button class="btn-collection" type="submit">Ajouter</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        {% endfor %}
+
+        {{ knp_pagination_render(cards) }}
+
+    </section>
+
+{% endblock %}
+

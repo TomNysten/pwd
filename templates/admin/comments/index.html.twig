@@ -1,0 +1,90 @@
+{% extends './layout.html.twig' %}
+
+{% block title %}Comments index{% endblock %}
+
+{% block content %}
+    <!-- Page Heading -->
+    <div class="page-heading">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Administration - Commentaires</h1>
+                    <p>Gérez les commentaires du site ici.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="admin comments-index">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Auteur</th>
+                <th>Date</th>
+                <th>Contenu</th>
+                <th>Signalés</th>
+                <th>Validé</th>
+                <th>Supprimé</th>
+                <th>Voir</th>
+                <th>Edit</th>
+                <th>Valid</th>
+                <th>Suppr</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for comment in comments %}
+                <tr>
+                    <td>
+                        <a href="{{ path('profile', {userName : comment.auteur.username}) }}">{{ comment.auteur.username }}</a>
+                    </td>
+                    <td>{{ comment.postedAt ? comment.postedAt|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>
+                        <p style="word-break: break-all;">{{ comment.content }}</p>
+                    </td>
+
+                    {% if comment.flaggedByUsers|length > 0 %}
+                        <td style="background-color: rgba(173, 16, 39,0.7); color: white; font-size: 20px;">{{ comment.flaggedByUsers|length }}</td>
+                    {% else %}
+                        <td>{{ comment.flaggedByUsers|length }}</td>
+                    {% endif %}
+
+                    {% if comment.validated %}
+                        <td style="background-color: rgba(14,150,50,0.8); color: white; font-size: 20px;">{{ comment.validated ? 'Yes' : 'No' }}</td>
+                    {% else %}
+                        <td>{{ comment.validated ? 'Yes' : 'No' }}</td>
+                    {% endif %}
+
+                    {% if comment.deleted %}
+                        <td style="background-color: rgba(16, 34, 173,0.8); color: white; font-size: 20px;">{{ comment.deleted ? 'Yes' : 'No' }}</td>
+                    {% else %}
+                        <td>{{ comment.deleted ? 'Yes' : 'No' }}</td>
+                    {% endif %}
+
+                    <td class="primary-button">
+                        <a href="{{ path('comments_show', {'id': comment.id}) }}"><i class="fa fa-search" aria-hidden="true"></i></a>
+                    </td>
+                    <td class="primary-button">
+                        <a href="{{ path('comments_edit', {'id': comment.id}) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                    </td>
+                    <td class="primary-button">
+                        <a href="{{ path('comments_validate', {'id' : comment.id}) }}"><i class="fa fa-check-circle-o" aria-hidden="true"></i></a>
+                    </td>
+                    <td class="primary-button">
+                        <a href="{{ path('delete_com', {'userName' : comment.auteur.username,'id' : comment.id}) }}"><i class="fa fa-trash" ></i></a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="7">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div style="display: flex; flex-direction: column;">
+            {{ knp_pagination_render(comments) }}
+        </div>
+
+    </section>
+
+{% endblock %}

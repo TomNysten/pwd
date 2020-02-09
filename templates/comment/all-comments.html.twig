@@ -1,0 +1,96 @@
+{% extends './layout.html.twig' %}
+
+{% block content %}
+
+    {#<!-- Fil d'arianne -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path('home') }}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ path('all-ext')}}">Toutes les extensions</a></li>
+            <li class="breadcrumb-item"><a href="{{ path('this-extension', {name:card.cardSet.name }) }}">{{ card.cardSet.name }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ path('this-card', {extension:card.cardSet.name, id: card.cardID})}}">{{ card.cardName }}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">All Comments</li>
+        </ol>
+    </nav>#}
+
+    <!-- Fil d'arianne -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path('home')}}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ path('profile', {'userName' : app.user.username})}}">Votre profil</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Tous les commentaires</li>
+        </ol>
+    </nav>
+
+    <!-- Page Heading -->
+    <div class="page-heading">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Tous les commentaires</h1>
+                    <p>Ici sont répertoriés tous les commentaires postés sur la page ou le profil de : <strong>{{ item }}</strong>.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="others_all_posts">
+        <div class="container-fluid classic">
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="posts-container">
+
+                        {% for comment in comments %}
+
+                            <div class="one-post">
+                                <p class="post-date">{{ comment.postedAt|date("d/m/Y") }}</p>
+                                <p class="post-from">Auteur :
+                                    <a href="{{ path('profile' , {'userName': comment.auteur.username}) }}">{{ comment.auteur.username }}</a>
+                                </p>
+                                {% if need_location is defined %}
+                                    <p class="post-location">
+                                        {% if comment.postedOnCard == NULL %}
+                                            Posté dans le profil de :
+                                            <a href="{{ path('profile', {'userName': comment.postedOnUser.username}) }}">
+                                                {{ comment.postedOnUser.username }}
+                                            </a>
+                                        {% else %}
+                                            Posté dans la carte :
+                                            <a href="{{ path('this-card', {'id': comment.postedOnCard.cardId,'extension' : comment.postedOnCard.cardSet.name}) }}">
+                                                {{ comment.postedOnCard.cardName }}
+                                            </a>
+                                        {% endif %}
+                                    </p>
+                                {% endif %}
+                                <img src="{{ asset('assets/images/users/') ~ comment.auteur.image }}" alt="L'image de profil de {{ comment.auteur.username }}">
+                                <p class="post-text">{{ comment.content }}</p>
+                                {{ include('include/comment-actions.html.twig') }}
+                            </div>
+
+                        {% endfor %}
+
+                    </div>
+                </div>
+
+                {{ knp_pagination_render(comments) }}
+
+
+                {#<div class="col-md-12 pagination">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                        </ul>
+                    </nav>
+                </div>#}
+
+            </div>
+        </div>
+
+    </section>
+
+{% endblock %}

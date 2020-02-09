@@ -1,0 +1,103 @@
+{% extends './layout.html.twig' %}
+
+{% block content %}
+
+    <!-- Fil d'arianne -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path('home')}}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ path('all-ext')}}">All Extensions</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ ext.name }}</li>
+        </ol>
+    </nav>
+
+    <!-- Page Heading -->
+    <div class="page-heading">
+        <div class="container-fluid">
+            <div class="row">
+            {% if app.user.roles == ['ROLE_ADMIN'] %}
+                <div class="col-md-10">
+                    <h1>{{ ext.name }}</h1>
+                    <p>Cette page réprésente une extension MTG et les cartes qu'elle contient. C'est ici que vous pouvez incrémenter votre wishlist et votre collection, ou simplement visualiser le contenu d'une extension.</p>
+                </div>
+                <div class="col-md-2">
+                    <p class="primary-button">
+                        <a href="{{ path('sets_edit', {'id': ext.id}) }}">Modifier cette carte</a>
+                    </p>
+                </div>
+            {% else %}
+                <div class="col-md-12">
+                    <h1>{{ ext.name }}</h1>
+                    <p>Cette page réprésente une extension MTG et les cartes qu'elle contient. C'est ici que vous pouvez incrémenter votre wishlist et votre collection, ou simplement visualiser le contenu d'une extension.</p>
+                </div>
+            {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Informations détaillées sur le block -->
+    <section class="this-extension">
+
+        <div class="container-fluid ext-data classic">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>Informations à propos de l'extension</h2>
+                    <table>
+                        <tr>
+                            <th>Titre : </th>
+                            <td><strong>{{ ext.name }}</strong></td>
+                        </tr>
+                        <tr>
+                            <th>Année de sortie : </th>
+                            <td><strong>{{ ext.year }}</strong></td>
+                        </tr>
+                        <tr>
+                            <th>Comprise dans le block : </th>
+                            <td><strong>{{ ext.block.name }}</strong></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-md-6">
+                    <h2>Informations à propos des cartes</h2>
+
+                    {% set total = PaginateCarousel.countCardRarities(cards) %}
+
+                    <table>
+                        <tr>
+                            <th>Nombre total de cartes : </th>
+                            <td><strong>{{ total.all }}</strong></td>
+                        </tr>
+                        <tr>
+                            <th>Nombre de cartes rares : </th>
+                            <td><strong>{{ total.rare}}</strong></td>
+                        </tr>
+                        <tr>
+                            <th>Nombre de cartes uncommon : </th>
+                            <td><strong>{{ total.uncommon }}</strong></td>
+                        </tr>
+                        <tr>
+                            <th>Nombre de cartes communes : </th>
+                            <td><strong>{{ total.common }}</strong></td>
+                        </tr>
+                        <tr>
+                            <th>Nombre de cartes timeshifted : </th>
+                            <td><strong>{{ total.timeshifted }}</strong></td>
+                        </tr>
+                        <tr>
+                            <th>Nombre de cartes mythiques : </th>
+                            <td><strong>{{ total.mythic }}</strong></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        {{ include('include/carouselControlBar.html.twig') }}
+
+        {% set carouselName = 'ext' %}
+
+        {{ include('include/carousel.html.twig') }}
+
+    </section>
+
+{% endblock %}

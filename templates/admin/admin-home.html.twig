@@ -1,0 +1,76 @@
+{% extends './layout.html.twig' %}
+
+{% block title %}Page d'administration{% endblock %}
+
+{% block content %}
+
+    <!-- Page Heading -->
+    <div class="page-heading">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Administration - Vue Globale</h1>
+                    <p>Voici une vue globale de votre site.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="admin-home">
+
+        <div class="container-fluid classic">
+            <div class="row">
+                <div class="col-md-4">
+                    <h2>Statistiques du site</h2>
+                    <table>
+                        <tr>
+                            <th>Nombre d'utilisateurs enregistrés :</th>
+                            <td><strong>Black lotus</strong></td>
+                        </tr>
+                        <tr>
+                            <th>Couleur :</th>
+                            <td><strong>Incolore</strong></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-md-4">
+                    <h2>Catalogue du site</h2>
+                    <div class="admin-actions">
+                        <div>
+                            <h3>Cartes</h3>
+                            <img src="{{ asset('assets/images/icons/ext/card_logo_black.png') }}">
+                            <a class="stretched-link" href="{{ path('admin_cards')}}"></a>
+                        </div>
+                        <div>
+                            <h3>Extensions</h3>
+                            <img src="{{ asset('assets/images/icons/ext/ext_logo_black.png') }}">
+                            <a class="stretched-link" href="{{ path('admin_ext')}}"></a>
+                        </div>
+                        <div>
+                            <h3>Blocks</h3>
+                            <img src="{{ asset('assets/images/icons/blocks/mtg_black_bords.png') }}">
+                            <a class="stretched-link" href="{{ path('admin_blocks')}}"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h2>Utilisateurs</h2>
+                    <div class="admin-actions">
+                        <div>
+                            <h3>Commentaires signalés</h3>
+                            <img src="{{ asset('assets/images/icons/admin/bell_icon.png') }}">
+                            <a class="stretched-link" href="{{ path('admin_flagged_coms')}}"></a>
+                        </div>
+                        <div>
+                            <h3>Utilisateurs</h3>
+                            <img src="{{ asset('assets/images/icons/admin/icon-users.png') }}">
+                            <a class="stretched-link" href="{{ path('admin_users')}}"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+{% endblock %}

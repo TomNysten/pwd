@@ -1,0 +1,48 @@
+<div class="container-fluid carousel-controlBar classic">
+    <div class="row">
+        <div class="col-3">
+            <div class="dropdown sorting">
+                <button class="btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownSortingButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Trier par
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="{{ app.request.pathinfo }}?orderby=cardColor">Couleur</a>
+                    <a class="dropdown-item" href="{{ app.request.pathinfo }}?orderby=cardType">Type</a>
+                    <a class="dropdown-item" href="{{ app.request.pathinfo }}?orderby=cardRarity">Rareté</a>
+                    <a class="dropdown-item" href="{{ app.request.pathinfo }}?orderby=cardSetNum">Numéro [DEFAULT]</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="dropdown sizing">
+                <button class="btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownSizingButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Taille des cartes
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <button class="dropdown-item" data-size="1">Small </button>
+                    <button class="dropdown-item" data-size="2">Medium [DEFAULT]</button>
+                    <button class="dropdown-item" data-size="3">Large</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="dropdown counting">
+                <button class="btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownCountingButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Cartes par pages
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a href="{{ app.request.pathinfo }}?cardsPerPage=30" class="dropdown-item" data-card-nb="30">30 </a>
+                    <a href="{{ app.request.pathinfo }}?cardsPerPage=50" class="dropdown-item" data-card-nb="50">50 [DEFAULT]</a>
+                    <a href="{{ app.request.pathinfo }}?cardsPerPage=75" class="dropdown-item" data-card-nb="75">75</a>
+                    <a href="{{ app.request.pathinfo }}?cardsPerPage=100" class="dropdown-item" data-card-nb="100">100</a>
+                    <a href="{{ app.request.pathinfo }}?cardsPerPage=120" class="dropdown-item" data-card-nb="120">120</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="multi-select">
+                <button class="btn-sm btn-secondary" type="button">Selection multiple</button>
+            </div>
+        </div>
+    </div>
+</div>

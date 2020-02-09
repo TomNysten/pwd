@@ -1,0 +1,113 @@
+{% extends './layout.html.twig' %}
+
+{% block content %}
+
+    <!-- Fil d'arianne -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path('home')}}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ path('profile', {'userName': app.user.username}) }}">{{ app.user.username }}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Votre collection</li>
+        </ol>
+    </nav>
+
+    <!-- Page Heading -->
+    <div class="page-heading">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Votre Collection</h1>
+                    <p>Gérez les cartes que vous possédez et mettez à jour votre collection.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="this-collection">
+
+        <div class="container-fluid collec-data classic">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>Statistiques de votre collection</h2>
+                    <h3>Statistiques globales</h3>
+
+                    <table>
+                        <tr>
+                            <th>Nombre total de cartes possédées :</th>
+                            <td><strong>{{ total.cards }}</strong></td>
+                        </tr>
+
+                    </table>
+                </div>
+                <div class="col-md-6">
+                    {% if cards != NULL %}
+                    <h2>></h2>
+                    <h3>Contenu des extensions</h3>
+
+                    <table>
+                        <tr>
+                            <th>Nombre total de cartes dans cette extension:</th>
+                            <td>{{ total.cards_in_ext }}</td>
+                        </tr>
+                        <tr>
+                            <th>Et vous en possédez :</th>
+                            <td>{{ total.youOwn }} / {{ total.cards_in_ext }}</td>
+                        </tr>
+                    </table>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid collec-manage classic">
+            <div class="row">
+                <div class="col-md-6">
+
+                    <h2>Choissiez quelle extension de votre collection afficher.</h2>
+                    <form>
+                        <div class="form-row">
+                            <div class="col-12">
+                                <label for="col-selector">Sélectionner l'extension</label>
+                                <select id="col-selector" class="custom-select">
+                                    <option selected>Afficher le contenu de l'extension...</option>
+                                {% for ext in ext_content %}
+
+                                    <option value="{{ app.request.pathinfo }}?extension={{ ext.name }}">{{ ext.name }} - {{ ext.cards_nmb }}</option>
+
+                                {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col-12 primary-button">
+                                <a id="col-displayer"  href="#">Voir</a>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="col-md-6">
+                    <h2>Actions sur la collection.</h2>
+                    <div class="dropdown">
+                        <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Actions</a>
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="{{ path('reset_collection', {'userName': app.user.username, 'id' : col_id })}}">Réinitialiser la collection</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% if (cards != NULL) %}
+            {{ include('include/carouselControlBar.html.twig') }}
+
+            {% set carouselName = 'col' %}
+
+            {{ include('include/carousel.html.twig') }}
+        {% endif %}
+
+    </section>
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends './layout.html.twig' %}
+
+{% block content %}
+
+    <!-- Page Heading -->
+    <div class="page-heading">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Ajouter une wishlist</h1>
+                    <p>Vous pouvez ici créer une nouvelle wishlist.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="new-wishlist">
+        {{ form_start(form) }}
+            {{ form_row(form.name) }}
+            <button class="button">Créer</button>
+        {{ form_end(form) }}
+    </section>
+
+{% endblock %}

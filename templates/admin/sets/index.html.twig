@@ -1,0 +1,39 @@
+{% extends './layout.html.twig' %}
+
+{% block title %}Sets index{% endblock %}
+
+{% block content %}
+    <h1>Sets index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Year</th>
+                <th>Icon</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for set in sets %}
+            <tr>
+                <td>{{ set.id }}</td>
+                <td>{{ set.name }}</td>
+                <td>{{ set.year }}</td>
+                <td>{{ set.icon }}</td>
+                <td>
+                    <a href="{{ path('sets_show', {'id': set.id}) }}">show</a>
+                    <a href="{{ path('sets_edit', {'id': set.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('sets_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,164 @@
+{% extends 'base.html.twig' %}
+
+{% block style %}
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
+    <!-- Bootstrap core CSS -->
+    <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{{ asset('assets/css/fontawesome.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/templatemo-style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/owl.css') }}">
+
+    <link rel="icon" type="image/ico" href="{{ asset('assets/images/icons/favicon/mtg_black_bords.ico') }}">
+
+{% endblock %}
+
+{% block body %}
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Main -->
+        <div id="main">
+            <div class="inner">
+                <div id="ajax-response" class="alert alert-success alert-dismissible fade show" role="alert" style="display: none;">
+                    <p></p>
+                </div>
+
+                <!-- Header -->
+                <header id="header">
+
+                    <div class="logo">
+                        <p>
+                            <a href="{{ path('home') }}">MTG Card Manager</a>
+                        </p>
+                    </div>
+                    <div class="user-interface">
+
+                    {% if(is_granted("IS_AUTHENTICATED_FULLY")) %}
+                        <div class="user-wl-cl">
+                            <a href="{{ path('wishlists', {'userName' : app.user.username}) }}">Mes Wishlist</a>
+                            <a href="{{ path('collection', {'userName' : app.user.username}) }}">Ma Collection</a>
+                        </div>
+                        <div class="user-profile">
+                            <a class="profile-link" href="{{ path('profile' , {'userName': app.user.username}) }}">Mon profil</a>
+                            <a class="user-signout" href="{{ path('logout') }}">Se déconnecter</a>
+                        </div>
+                        <div class="user-picture">
+                            <div>
+                                <a href="{{ path('profile', {'userName': app.user.username}) }}">
+                                    <img src="{{ asset('assets/images/users/') ~ app.user.image }}" title="Accéder au profil" data-toggle="tooltip" data-placement="bottom" alt="Photo de profil">
+                                </a>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="user-wl-cl">
+                            <a class="profile-link" href="{{ path('login') }}">Se connecter</a>
+                        </div>
+                        <div class="user-profile">
+                            <a class="user-signout" href="{{ path('register') }}">S'inscrire</a>
+                        </div>
+                        <div class="user-picture">
+                            <div>
+                                <a href="{{ path('login') }}">
+                                    <img src="{{ asset('assets/images/users/question.png') }}" title="Connectez-vous!" data-toggle="tooltip" data-placement="bottom" alt="Ca serait votre photo de profil si vous étiez connecté">
+                                </a>
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    </div>
+
+                </header>
+
+                {# read and display several types of flash messages #}
+                {% for label, messages in app.flashes(['success', 'warning']) %}
+                    {% for message in messages %}
+                        <div class="flash-{{ label }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+
+                {#<p>{{ dump(app.request.pathinfo) }}</p>#}
+                {#<p>{{ dump(app.request.get('_route')) }}</p>#}
+                {#<p>{{ dump(app.get('_route_params')) }}</p>
+#}
+                {% block content %}
+
+                {% endblock %}
+
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div id="sidebar">
+
+            <div class="inner">
+
+                <!-- Search Box -->
+                <section id="search" class="alt">
+                    <form method="get" action="{{ path('search') }}">
+                        <input type="text" name="query" id="search" placeholder="Search..." />
+                    </form>
+                </section>
+
+                <!-- Menu -->
+                <nav id="menu">
+                    <ul>
+
+                    <!-- Menu statique de la sidebar -->
+                    {% if app.user and app.user.roles == ["ROLE_ADMIN"] %}
+                        <li><a href="{{ path('admin_home') }}" style="text-decoration: underline;">ADMIN</a></li>
+                    {% endif %}
+                        <li><a href="{{ path('home') }}">Page Home</a></li>
+                        <li><a href="{{ path('all-blocks') }}">All Blocks</a></li>
+                        <li><a href="{{ path('all-ext') }}">All Extensions</a></li>
+
+                    <!-- Contenu de la sidebar -->
+                    {% set sidebar = blocksAndSets.getAll() %}
+
+                    {% for block in sidebar  %}
+                        <li>
+                            <span class="opener"><i>{{ block.year }} - </i>{{ block.name }}</span>
+                            <ul>
+                                {% for set in block.content %}
+                                <li>
+                                    <a href="{{ path('this-extension', {'name': set.name}) }}">
+                                        <img src="{{ asset('assets/images/icons/ext/jpg/tile' ~ set.icon) }}.jpg" alt="{{ set.name }}"> {{ set.name }}
+                                    </a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    {% endfor %}
+                        {#<li><a href="{{ path('contact') }}">Contact</a></li>#}
+                    </ul>
+                </nav>
+
+                <!-- Footer -->
+                <footer id="footer">
+                    <p class="copyright">Copyright &copy; 2019 Nysten Tom
+                        <br>
+                        <a id="back-to-top" href="#" class="btn btn-primary btn-sm back-to-top" role="button" title="Click to return on the top page" data-toggle="tooltip" data-placement="left"><span class="glyphicon glyphicon-chevron-up">Back to top</span></a>
+                    </p>
+                </footer>
+
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <!-- Scripts -->
+    <!-- Bootstrap core JavaScript -->
+    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+    <script src="{{ asset('assets/js/browser.min.js') }}"></script>
+    <script src="{{ asset('assets/js/breakpoints.min.js') }}"></script>
+    <script src="{{ asset('assets/js/transition.js') }}"></script>
+    <script src="{{ asset('assets/js/owl-carousel.js') }}"></script>
+    <script src="{{ asset('assets/js/custom.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends './layout.html.twig' %}
+
+{% block title %}Edit Sets{% endblock %}
+
+{% block content %}
+    <h1>Edit Sets</h1>
+
+    {{ include('admin/sets/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('sets_index') }}">back to list</a>
+
+    {{ include('admin/sets/_delete_form.html.twig') }}
+{% endblock %}

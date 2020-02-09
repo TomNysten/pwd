@@ -1,0 +1,153 @@
+{% extends './layout.html.twig' %}
+
+{% block content %}
+
+    <!-- Fil d'arianne -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path('home')}}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ path('profile', {'userName' :  app.user.username }) }}">{{ app.user.username }}</a></li>
+            {% if wishId != NULL %}
+                <li class="breadcrumb-item active" aria-current="page">{{ wishlist_now.name }}</li>
+            {% else %}
+                <li class="breadcrumb-item active" aria-current="page">Menus des wishlists</li>
+            {% endif %}
+        </ol>
+    </nav>
+
+    <!-- Page Heading -->
+    <div class="page-heading">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    {% if wishId != NULL %}
+                        <h1>Bienvenue dans votre wishlist : <strong>"{{ wishlist_now.name }}"</strong></h1>
+                        <p>Gérez votre wishlist ici.</p>
+                    {% else %}
+                        <h1>Choisissez une wishlist à afficher.</h1>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Informations détaillées sur le block -->
+    <section class="this-wishlist">
+
+    {% if wishId != NULL %}
+        <div class="container-fluid wishlist-data classic">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>Statistiques de la wishlist</h2>
+                    <h3>Infos Globales</h3>
+                    <table>
+                        <tr>
+                            <th>Nom :</th>
+                            <td><strong>Deck Urza</strong></td>
+                        </tr>
+                        <tr>
+                            <th>Nombre total de cartes recherchées :</th>
+                            <td><strong>245</strong></td>
+                        </tr>
+                        <tr>
+                            <th>Nombre de cartes rares :</th>
+                            <td>5555554</td>
+                        </tr>
+                        <tr>
+                            <th>Nombre de cartes uncommon :</th>
+                            <td>566594515</td>
+                        </tr>
+                        <tr>
+                            <th>Nombre de cartes communes :</th>
+                            <td>566594515</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-md-6">
+                    <h2>></h2>
+                    <h3>Contenu de la wishlist</h3>
+
+                    <table>
+                        <tr>
+                            <th>Outside Blocks</th>
+                            <td>245/785</td>
+                        </tr>
+                        <tr>
+                            <th>Theros</th>
+                            <td>25/874</td>
+                        </tr>
+                        <tr>
+                            <th>Mirage :</th>
+                            <td>548/608</td>
+                        </tr>
+                        <tr>
+                            <th>Tempest :</th>
+                            <td>874/1250</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+        <div class="container-fluid wishlist-manage classic">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>Sélectionnez la wishlist à afficher.</h2>
+                    <form>
+
+                        <div class="form-row">
+                            <div class="col-12">
+                                <select id="wish-selector" class="custom-select">
+                                    <option selected>Choisissez une wishlist...</option>
+                                    {% for wish in wishlists %}
+
+                                        <option value="{{ app.request.pathinfo }}?wishlist={{ wish.id }}">{{ wish.name }} - {{ wish.wishlistContents|length }} cartes</option>
+
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col-12 primary-button">
+                                <a id="wish-displayer" href="#">Voir</a>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <h2>Actions sur la wishlist.</h2>
+                    <div class="row">
+                        <div class="col-md-6 primary-button">
+                            <a href="{{ path('wishlist_new', {userName : app.user.username}) }}">Créer une nouvelle wishlist</a>
+                        </div>
+                        <div class="col-md-6">
+                            {% if wishId != NULL %}
+                            <div class="dropdown">
+                                <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Actions</a>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item" href="{{ path('wishlist_default', {userName : app.user.username, id : wishId}) }}">Faire de cette wishlist la principale</a>
+                                    <a class="dropdown-item" href="{{ path('delete_wishlist', {userName : app.user.username, id : wishId}) }}">Supprimer la wishlist</a>
+                                </div>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        {% if (cards != NULL) %}
+            {{ include('include/carouselControlBar.html.twig') }}
+
+            {% set carouselName = 'wish' %}
+
+            {{ include('include/carousel.html.twig') }}
+        {% endif %}
+
+    </section>
+
+{% endblock %}

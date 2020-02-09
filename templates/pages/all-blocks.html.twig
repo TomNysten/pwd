@@ -1,0 +1,58 @@
+{% extends './layout.html.twig' %}
+
+{% block content %}
+
+    <!-- Fil d'arianne -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path('home')}}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">All Blocks</li>
+        </ol>
+    </nav>
+
+    <!-- Page Heading -->
+    <div class="page-heading">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Blocks</h1>
+                    <p>Les <strong>Blocks</strong> forment le jeu Magic The Gathering en apportant chaque année de nouvelles extensions. Découvrez les ici.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="all-blocks">
+        <div class="container-fluid">
+            <div class="row">
+            {% for block in blocks %}
+
+                <div class="col-md-4">
+                    <div class="one-block">
+                        <div class="icon"></div>
+                        <h6>{{ block.year }}</h6>
+                        <h4>{{ block.name }}</h4>
+                        <p>{{ block.description }}</p>
+                        <a href="{{ path('this-block', {name : block.name}) }}" class="stretched-link"></a>
+                    </div>
+                </div>
+
+            {% endfor %}
+            </div>
+        </div>
+
+        {{ knp_pagination_render(blocks) }}
+
+        {#<ul class="table-pagination">
+            <li><a href="#">Previous</a></li>
+            <li class="active"><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">...</a></li>
+            <li><a href="#">8</a></li>
+            <li><a href="#">9</a></li>
+            <li><a href="#">Next</a></li>
+        </ul>#}
+
+    </section>
+
+{% endblock %}

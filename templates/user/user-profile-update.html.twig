@@ -1,0 +1,31 @@
+{% extends './layout.html.twig' %}
+
+{% block content %}
+
+    {% if (status) %}
+        <!-- Page Heading -->
+        <div class="page-heading">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>Mise à jour de vos informations</h1>
+                        <p>Bienvenue {{ app.user.username }}, vous pouvez ici mettre à jour certaines de vos informations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{ form_start(form) }}
+            {{ form_row(form.firstName,
+                {'label':'Changer votre prénom',    'attr': {'placeholder':'Prénom...' } }) }}
+            {{ form_row(form.lastName,
+                {'label':'Changer votre nom',       'attr': {'placeholder':'Nom...' } }) }}
+
+            <button type="submit" class="button">Valider</button>
+        {{ form_end(form) }}
+
+    {% else %}
+        <p class="alert-danger">Vous ne pouvez pas mettre à jour les informations de cet utilisateur !</p>
+    {% endif %}
+
+{% endblock %}

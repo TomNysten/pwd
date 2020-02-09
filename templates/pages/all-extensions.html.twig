@@ -1,0 +1,74 @@
+{% extends './layout.html.twig' %}
+
+{% block content %}
+
+    <!-- Fil d'arianne -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path('home')}}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">All extensions</li>
+        </ol>
+    </nav>
+
+    <!-- Page Heading -->
+    <div class="page-heading">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Extensions</h1>
+                    <p>Les <strong>Extensions</strong> sont le coeur de MTG. Chacune d'entre elles apportent une grande quantité de nouvelles cartes provenant d'un thème, voire archétype défini.<br>Cliquez sur un block pour dérouler ses extensions.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="all-ext">
+
+        <div id="accordion">
+            {% set cpt = 1 %}
+            {% set expanded = "true" %}
+            {% set class_show = "show" %}
+            {% set BlocksAndSets = blocksAndSets.getAll() %}
+
+        {% for block in BlocksAndSets %}
+            <div class="card">
+                <div class="card-header" id="heading{{ cpt }}">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapse{{ cpt }}" aria-expanded="{{ expanded }}" aria-controls="collapse{{ cpt }}">
+                            {{ block.name }}
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapse{{ cpt }}" class="collapse {{ class_show }}" aria-labelledby="heading{{ cpt }}" data-parent="#accordion">
+                    <div class="card-body">
+
+                        <div class="container-fluid">
+                            <div class="row">
+                            {% for ext in block.content %}
+                                <div class="col-md-2">
+                                    <div class="one-ext">
+                                        <div class="icon" style="background-image: url( {{ asset('assets/images/icons/ext/ext_logo_black.png') }} );"></div>
+                                        <h6>{{ block.year }}</h6>
+                                        <h4>{{ ext.name }}</h4>
+                                        <a href="{{ path('this-extension', {'name' : ext.name}) }}" class="stretched-link"></a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            {% set cpt = cpt+1 %}
+            {% set expanded = "false" %}
+            {% set class_show = "" %}
+        {% endfor %}
+
+        </div>
+
+    </section>
+
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends './layout.html.twig' %}
+
+{% block title %}Users index{% endblock %}
+
+{% block content %}
+    <!-- Page Heading -->
+    <div class="page-heading">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Administration - Utilisateurs</h1>
+                    <p>Gérez les utilisateurs de votre site ici.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="admin users-index">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Image</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Roles</th>
+                <th>Inscription</th>
+
+                <th>actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>
+                        <img style="max-width: 100px;" src="{{ asset('assets/images/users/'~ user.image) }}" alt="{{ user.image }}">
+                    </td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.firstName }}</td>
+                    <td>{{ user.lastName }}</td>
+                    <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                    <td>{{ user.registeredAt ? user.registeredAt|date('Y-m-d H:i:s') : '' }}</td>
+
+                    <td>
+                        <a href="{{ path('users_show', {'id': user.id}) }}">show</a>
+                        <a href="{{ path('users_edit', {'id': user.id}) }}">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="10">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="{{ path('users_new') }}">Create new</a>
+    </section>
+
+{% endblock %}

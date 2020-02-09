@@ -1,0 +1,190 @@
+{% extends './layout.html.twig' %}
+
+{% block title %}
+    Profil de l'utilisateur
+{% endblock %}
+
+{% block content %}
+
+    <!-- Fil d'arianne -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path('home')}}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Votre profil</li>
+        </ol>
+    </nav>
+
+    <!-- Page Heading -->
+    <div class="page-heading">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                {% if (at_home) %}
+                    <h1>Votre profil</h1>
+                    <p>Bienvenue chez vous, <strong>{{ user.username }}</strong> !</p>
+                {% else %}
+                    <h1>Profil de {{ user.username }}</h1>
+                    <p>Bienvenue dans le profil de <strong>{{ user.username }}.</strong></p>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Informations détaillées sur le block -->
+    <section class="this-user">
+
+        <div class="container-fluid user-data classic">
+            <div class="row">
+                <div class="col-md-4 account">
+                    <h2>Informations du compte</h2>
+                    <table>
+                        <tr>
+                            <th>Nom d'utilisateur :</th>
+                            <td><strong>{{ user.username }}</strong></td>
+                        </tr>
+                        <tr>
+                            <th>Nom</th>
+                            <td><strong>{{ user.firstName }}</strong></td>
+                        </tr>
+                        <tr>
+                            <th>Prénom</th>
+                            <td><strong>{{ user.lastName }}</strong></td>
+                        </tr>
+                        <tr>
+                            <th>Date d'inscription</th>
+                            <td><strong>{{ user.registeredAt|date }}</strong></td>
+                        </tr>
+                    </table>
+                {% if at_home %}
+                    <p class="primary-button"><a href="{{ path('updateUserData', {'userName': user.username}) }}">Mettre à jour les informations</a></p>
+                {% endif %}
+                </div>
+                <div class="col-md-4 stats">
+                    <h2>Statistiques</h2>
+
+                {% if at_home %}
+                    <h3>Collection</h3>
+                    <table>
+                        <tr>
+                            <th>Nombre total de cartes dans la collection:</th>
+                            <td>{{ user_stats.collection.total }}</td>
+                        </tr>
+                    </table>
+
+                    <h3>Wishlists</h3>
+                    <table>
+                        <tr>
+                            <th>Nombre de wishlists :</th>
+                            <td>{{ user_stats.wishlist.nmb }}</td>
+                        </tr>
+                        <tr>
+                            <th>Nombre de cartes dans la wishlist principale :</th>
+                            <td>{{ user_stats.wishlist.total }}</td>
+                        </tr>
+                    </table>
+
+                    <h3>Commentaires</h3>
+                    <table>
+                        <tr>
+                            <th>Commentaires postés :</th>
+                            <td>{{ user_stats.comments.total }}</td>
+                        </tr>
+                    </table>
+                {% endif %}
+
+                </div>
+                <div class="col-md-4 profile-pic">
+                    <h2>Image de profil</h2>
+                    <img src="{{ asset('assets/images/users/') ~ user.image }}" alt="{{ user.image }}">
+                {% if at_home %}
+                    <h3>Changer de photo de profil</h3>
+                    {{ form_start(form_user_img) }}
+                        {{ form_row(form_user_img.image) }}
+                        <button class="button" type="submit">Valider</button>
+                    {{ form_end(form_user_img) }}
+                {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid user-posts classic">
+            <div class="row">
+                <div class="col-md-6 posts-container">
+                {% if (at_home) %}
+                    <h2>Vos derniers commentaires</h2>
+                {% else %}
+                    <h2>Derniers commentaires postés par {{ user.username }}</h2>
+                {% endif %}
+                    <div class="posts-container">
+                    {% for com_by_user in coms_by_user %}
+                        {% if com_by_user.deleted != true %}
+                        <div class="one-post">
+                            <p class="post-date">{{ com_by_user.postedAt|date }}</p>
+                            <p class="post-location">
+                                {% if com_by_user.postedOnCard == NULL %}
+                                    Dans le profil de :
+                                    <a href="{{ path('profile', {'userName': com_by_user.postedOnUser.username}) }}">
+                                        {{ com_by_user.postedOnUser.username }}
+                                    </a>
+                                {% else %}
+                                    Dans la carte :
+                                    <a href="{{ path('this-card', {'id': com_by_user.postedOnCard.cardId,'extension' : com_by_user.postedOnCard.cardSet.name}) }}">
+                                        {{ com_by_user.postedOnCard.cardName }}
+                                    </a>
+                                {% endif %}
+                            </p>
+                            <p class="post-text">{{ com_by_user.content }}</p>
+                            {{ include('include/comment-actions.html.twig') }}
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+
+                    </div>
+                    {% if (at_home) %}
+                        <a href="{{ path('coms_by_user', {userName: user.username})}}">Voir vos derniers commentaires></a>
+                    {% else %}
+                        <a href="{{ path('coms_by_user', {userName: user.username}) }}">Voir tous les commentaires de cet utilisateur ></a>
+                    {% endif %}
+
+
+                </div>
+                <div class="col-md-6 posts-container">
+                    <h2>Commentaire des utilisateurs</h2>
+                    <div class="posts-container">
+                    {% for com_on_user in coms_on_user %}
+                        {% if com_on_user.deleted != true %}
+                        <div class="one-post">
+                            <p class="post-date">{{ com_on_user.postedAt|date }}</p>
+                            <p class="post-from">De :
+                                <a href="{{ path('profile', {'userName': com_on_user.auteur.username}) }}">{{ com_on_user.auteur.username }}</a>
+                            </p>
+                            <img src="{{ asset('assets/images/users/') ~ com_on_user.auteur.image }}" alt="Image de profil de {{ com_on_user.auteur.username }}">
+                            <p class="post-text">{{ com_on_user.content }}</p>
+                            {{ include('include/comment-actions.html.twig') }}
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                    </div>
+                    <a href="{{ path('coms_on_user', {userName: user.username})}}">Voir tous les commentaires des autres utilisateurs ></a>
+
+                </div>
+            </div>
+        </div>
+
+        {% if(is_granted("IS_AUTHENTICATED_FULLY") and app.user.roles != ['ROLE_BANNED']) and at_home != true %}
+            <div class="container-fluid classic">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>Poster un commentaire sur le profil de {{ user.username }}</h2>
+                        {{ form_start(form) }}
+                            {{ form_row(form.content,
+                                {'label':'Votre message',    'attr': {'placeholder':'Votre commentaire...' } }) }}
+                            <button type="submit" class="button">Poster</button>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+    </section>
+
+{% endblock %}

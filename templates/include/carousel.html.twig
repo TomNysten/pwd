@@ -1,0 +1,88 @@
+{# ==================================================================================== #}
+
+    {% set cards_nmb   = cards|length %}
+    {% set every_pages = PaginateCarousel.getAllPages(cards, cards_nmb, cardsPerPage) %}
+
+{# ===================================================================================== #}
+
+<div id="{{ carouselName }}-carousel" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        {% for page in every_pages %}
+            {% if (loop.first) %}
+                <li data-target="#{{ carouselName }}-carousel" data-slide-to="0" class="active"></li>
+            {% else %}
+                <li data-target="#{{ carouselName }}-carousel" data-slide-to="{{ loop.index-1 }}"></li>
+            {% endif %}
+        {% endfor %}
+    </ol>
+    <div class="carousel-inner">
+        {% for page in every_pages %}
+        {% if (loop.first) %}
+        <div class="carousel-item active">
+            {% else %}
+            <div class="carousel-item">
+                {% endif %}
+                <div class="container-fluid">
+                    <div class="row medium">
+                        {% if (carouselName == 'ext') %}
+                            {% for card in page %}
+                                <div class="one-card {{ card.cardColor.name }}"
+                                     data-id="{{ card.cardId }}"
+                                     data-title="{{ card.cardName }}"
+                                     data-color="{{ card.cardColor.name }}"
+                                     data-type="{{ card.cardType.name }}"
+                                     data-rarity="{{ card.cardRarity.name }}"
+                                     data-ext="{{ card.cardSet.name}}"
+                                     data-ext-num="{{ card.cardSetNum}}">
+                                    <img src="{{ asset('assets/images/cards/'~ ext.block.name ~"/"~ card.cardSet.name ~ "/" ~ card.cardImage) }}.jpeg" alt="{{ card.cardName }}">
+                                </div>
+                            {% endfor %}
+                        {% elseif (carouselName == 'col') %}
+                            {% for card in cards %}
+                                <div class="one-card {{ card.cards.cardColor.name }}"
+                                     data-id="{{ card.cards.cardId }}"
+                                     data-title="{{ card.cards.cardName }}"
+                                     data-color="{{ card.cards.cardColor.name }}"
+                                     data-type="{{ card.cards.cardType.name }}"
+                                     data-rarity="{{ card.cards.cardRarity.name }}"
+                                     data-ext="{{ card.cards.cardSet.name}}"
+                                     data-ext-num="{{ card.cards.cardSetNum}}">
+                                    <img src="{{ asset('assets/images/cards/'~ ext.block.name ~"/"~ card.cards.cardSet.name ~ "/" ~ card.cards.cardImage) }}.jpeg" alt="{{ card.cards.cardName }}">
+                                    <div class="you-own">
+                                        <p><img src="{{ asset('assets/images/icons/collection/chest-icon.png') }}"></p>
+                                        <p>X<strong class="card-quantity">{{ card.quantity }}</strong></p>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            {% for card in cards %}
+                                <div class="one-card {{ card.cards.cardColor.name }}" data-wishid={{ wishId }}
+                                     data-id="{{ card.cards.cardId }}"
+                                     data-title="{{ card.cards.cardName }}"
+                                     data-color="{{ card.cards.cardColor.name }}"
+                                     data-type="{{ card.cards.cardType.name }}"
+                                     data-rarity="{{ card.cards.cardRarity.name }}"
+                                     data-ext="{{ card.cards.cardSet.name}}"
+                                     data-ext-num="{{ card.cards.cardSetNum}}">
+                                    <img src="{{ asset('assets/images/cards/'~ card.cards.cardSet.block.name ~"/"~ card.cards.cardSet.name ~ "/" ~ card.cards.cardImage) }}.jpeg" alt="{{ card.cards.cardName }}">
+                                    <div class="you-own">
+                                        <p><img src="{{ asset('assets/images/icons/wishlist/looking.png') }}"></p>
+                                        <p>X<strong class="card-quantity">{{ card.quantity }}</strong></p>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <a class="carousel-control-prev" href="#{{ carouselName }}-carousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#{{ carouselName }}-carousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>

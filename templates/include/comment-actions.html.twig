@@ -1,0 +1,27 @@
+{% if com_by_user is defined %}
+    {% set comment = com_by_user %}
+{% elseif com_on_user is defined %}
+    {% set comment = com_on_user %}
+{% endif %}
+
+{% if (app.user) %}
+    {% if app.user.username == comment.auteur.username %}
+        {% set own_com = true %}
+    {% else %}
+        {% set own_com = false %}
+    {% endif %}
+
+    <div class="post-action primary-button">
+
+    {% if app.user.roles == ['ROLE_ADMIN'] or own_com %}
+        <a href="{{ path('delete_com', {userName : comment.auteur.username, id: comment.id}) }}" title="Supprimer le post" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-trash" ></i></a>
+    {% endif %}
+    {% if own_com == false %}
+        <a href="{{ path('flag_com', {userName : comment.auteur.username, id: comment.id}) }}" title="Signaler le post" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-bell"></i></a>
+    {% endif %}
+
+    </div>
+
+{% endif %}
+
+{#<a href="#" title="Blacklister cet utilisateur" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-thumbs-down"></i></a>#}

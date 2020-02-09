@@ -1,0 +1,89 @@
+{% extends './layout.html.twig' %}
+
+{% block content %}
+
+    <!-- Fil d'arianne -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path('home')}}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ path('all-blocks') }}">All blocks</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ block.name }}</li>
+        </ol>
+    </nav>
+
+    <!-- Page Heading -->
+    <div class="page-heading">
+        <div class="container-fluid">
+            <div class="row">
+            {% if app.user.roles == ['ROLE_ADMIN'] %}
+                <div class="col-md-10">
+                    <h1>{{ block.name }}</h1>
+                    <p>{{ block.description }}</p>
+                </div>
+                <div class="col-md-2">
+                    <p class="primary-button">
+                        <a href="{{ path('blocks_edit', {'id': block.id}) }}">Modifier ce block</a>
+                    </p>
+                </div>
+            {% else %}
+                <div class="col-md-12">
+                    <h1>{{ block.name }}</h1>
+                    <p>{{ block.description }}</p>
+                </div>
+            {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Informations détaillées sur le block -->
+    <section class="this-block">
+        <div class="container-fluid">
+            <div class="row">
+
+                <div class="col-md-8">
+                    <div class="block-infos classic">
+                        <h2>Extensions contenues</h2>
+                        <div class="container-fluid">
+                            <div class="row">
+                            {% for ext in exts %}
+
+                                <div class="col-md-4">
+                                    <div class="one-ext">
+                                        <div class="icon"></div>
+                                        <h6>{{ ext.year }}</h6>
+                                        <h4>{{ ext.name}}</h4>
+                                        <a href="{{ path('this-extension', { name: ext.name})}}" class="stretched-link"></a>
+                                    </div>
+                                </div>
+
+                            {% endfor %}
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="block-stats classic">
+                        <h2>Informations concernant le block</h2>
+                        <table>
+                            <tr>
+                                <th>Année de sortie : </th>
+                                <td><strong>{{ block.year }}</strong></td>
+                            </tr>
+                            <tr>
+                                <th>Nombre total de cartes : </th>
+                                <td><strong>{{ total.cards}}</strong></td>
+                            </tr>
+                            <tr>
+                                <th>Nombre d'extensions :</th>
+                                <td><strong>{{ total.ext }}</strong></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

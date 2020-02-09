@@ -1,0 +1,34 @@
+{% extends './layout.html.twig' %}
+
+{% block content %}
+
+    <!-- Page Heading -->
+    <div class="page-heading">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Inscription</h1>
+                    <p>Vous pouvez vous inscrire sur le site ici.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{ form_start(form) }}
+
+        {{ form_row(form.username,
+            {'label':'Pseudo',          'attr': {'placeholder':'Votre pseudo' } }) }}
+        {{ form_row(form.password,
+            {'label':'Mot de passe',    'attr': {'placeholder':'Votre mot de passe' } }) }}
+        {{ form_row(form.email,
+            {'label':'Adresse mail',    'attr': {'placeholder':'Votre adresse mail' } }) }}
+        {{ form_row(form.firstName,
+            {'label':'Prénom',          'attr': {'placeholder':'Votre prénom' } }) }}
+        {{ form_row(form.lastName,
+            {'label':'Nom',             'attr': {'placeholder':'Votre nom' } }) }}
+
+        <button type="submit" class="button">S'inscire</button>
+
+    {{ form_end(form) }}
+
+{% endblock %}

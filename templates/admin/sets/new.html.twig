@@ -1,0 +1,11 @@
+{% extends './layout.html.twig' %}
+
+{% block title %}New Sets{% endblock %}
+
+{% block content %}
+    <h1>Create new Sets</h1>
+
+    {{ include('admin/sets/_form.html.twig') }}
+
+    <a href="{{ path('sets_index') }}">back to list</a>
+{% endblock %}

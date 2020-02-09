@@ -1,0 +1,47 @@
+{% extends './layout.html.twig' %}
+
+{% block title %}Cards{% endblock %}
+
+{% block content %}
+    <!-- Page Heading -->
+    <div class="page-heading">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Cartes - {{ card.cardName }}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>CardId</th>
+                <td>{{ card.cardId }}</td>
+            </tr>
+            <tr>
+                <th>CardName</th>
+                <td>{{ card.cardName }}</td>
+            </tr>
+            <tr>
+                <th>CardSetNum</th>
+                <td>{{ card.cardSetNum }}</td>
+            </tr>
+            <tr>
+                <th>CardAlter</th>
+                <td>{{ card.cardAlter }}</td>
+            </tr>
+            <tr>
+                <th>CardImage</th>
+                <td><img style="max-width: 200px;" src="{{ asset('assets/images/cards/'~ card.cardSet.block.name ~"/"~ card.cardSet.name ~ "/" ~ card.cardImage) }}.jpeg" alt="{{ card.cardName }}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('cards_index') }}">back to list</a>
+
+    <a href="{{ path('cards_edit', {'cardId': card.cardId}) }}">edit</a>
+
+    {{ include('admin/cards/_delete_form.html.twig') }}
+{% endblock %}

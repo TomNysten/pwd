@@ -1,0 +1,92 @@
+{% extends './layout.html.twig' %}
+
+{% block content %}
+    <!-- Banner -->
+    <section class="main-banner">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="banner-content">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="banner-caption">
+                                    <h4>Welcome to <em>Magic Card Manager</em> !</h4>
+                                    <span>Trouvez les bonnes cartes, créez, partagez et gérez votre propre collection et wishlists.</span>
+
+                                    <p>This website is made by <strong>Nysten Tom</strong> using Ramayana, a free Bootstrap 4 CSS template by <strong>templatemo.</strong></p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Top Image -->
+    <section class="top-image">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <img src="{{ asset('assets/images/pages/home/some_cards3.jpeg') }}" alt="Illustration d'accueil">
+                    <div class="down-content">
+                        <h4>Blocks</h4>
+                        <p>Sur cette pages, parcourez l'ensemble des blocks existants.</p>
+                        <div class="primary-button">
+                            <a href="{{ path('all-blocks')}}">Parcourir les blocks</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Left Image -->
+    <section class="left-image">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="{{ asset('assets/images/pages/home/cards_binder.jpg') }}" alt="Illustration d'accueil">
+                </div>
+                <div class="col-md-6">
+                    <div class="right-content">
+                        <h4>Collection</h4>
+                        <p>Gérez et visionnez facilement votre collection.</p>
+                        <div class="primary-button">
+                        {% if app.user %}
+                            <a href="{{ path('collection', {'userName': app.user.username}) }}">Aller à votre collection</a>
+                        {% else %}
+                            <a href="{{ path('login') }}">Connectez vous</a>
+                        {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Right Image -->
+    <section class="right-image">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="left-content">
+                        <h4>Wishlists</h4>
+                        <p>Créez et partager facilement vos wishlists.</p>
+                        <div class="primary-button">
+                        {% if app.user %}
+                            <a href="{{ path('wishlists', {'userName': app.user.username}) }}">Allez à vos wishlists</a>
+                        {% else %}
+                            <a href="{{ path('login') }}">Connectez vous</a>
+                        {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <img src="{{ asset('assets/images/pages/home/magic_players.jpeg')}}" alt="Illustration de joueurs Magic The Gathering">
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
